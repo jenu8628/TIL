@@ -110,30 +110,29 @@ $ git clone {가져오고자 하는  repo url}
 
 
 
+### 5.  변경사항 자동으로 다운로드 하기
+
+```sh
+$git pull origin master
+```
+
+
+
+
+
 ### Git에 사진 올리기
 
 - git bash(폴더 or 폴더내에서 마우스 우클릭 눌러서) 시작
-
 - git init입력
-
 - git bash를 켰을 때 주소 뒤에 (master)가 붙는다면 git에서 관리하는 것
-
 - master가 붙었을 때 다시 git init 누르지 않기!
-
 - git status(파일 확인)
-
 - git add .(깃에 추가)
-
 - git config --global user. email 이메일@주소(프로그램에 깃 이메일 주소 확인시켜주기)
-
 - git config --global user. name 닉네임정하기
-
 - git commit -m 'initial commit'(이미지 올리기)
-
 - git log(로그 보기)
-
 - [GIT TIL](https://github.com/jenu8628/TIL.git)
-
 - git remote add origin https://github.com/jenu8628/TIL.git (구글과 연동)
-
 - git push origin master (git에 업로드)
+- git pull origin master
