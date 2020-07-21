@@ -110,10 +110,6 @@ $ git clone {가져오고자 하는  repo url}
 
 
 
-
-
-
-
 ### Git에 사진 올리기
 
 - git bash(폴더 or 폴더내에서 마우스 우클릭 눌러서) 시작
