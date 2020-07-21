@@ -110,10 +110,21 @@ $ git clone {가져오고자 하는  repo url}
 
 
 
-### 5.  변경사항 자동으로 다운로드 하기
+## 변경사항 자동으로 다운로드 하기
 
 ```sh
 $git pull origin master
+```
+
+
+
+
+
+
+
+```sh
+$pip install notebook
+$jupyter notebook
 ```
 
 
