@@ -102,3 +102,53 @@ print(max_number)
 print(count)
 ```
 
+
+
+## 2 단어
+
+### 1. 단어 제거
+
+```python
+# 입력 apple 출력 pple
+
+word = input()
+
+# 방법 1
+word.replace('a','')
+
+# 방법 2
+result = ''
+for char in word:
+    if char != a:
+        result = result + char
+print(result)
+```
+
+
+
+### 2. 단어 뒤집기
+
+```python
+# 입력 apple 출력 elppa
+
+word = input()
+
+# 방법 1
+print(word[::-1])
+
+# 방법 2
+reversed_word=''
+for index in range(len(word)-1,-1,-1): # 0까지로 하면 0자리를 포함하지 않으니 -1까지, -1단위로
+    char = word[index]
+    reversed_word += char
+print(reversed_word)
+
+# 방법 3
+result =''
+for char in word:
+    result = char + result
+print(result)   
+```
+
+
+
