@@ -120,14 +120,12 @@ $git pull origin master
 
 
 
-
-
 ```sh
 $pip install notebook
 $jupyter notebook
 ```
 
-
+.git이 있는 폴더에서 마우스 우클릭 -> vs코드 실행 -> .gitignore생성-> .{파일OR폴더명) 실행
 
 
 

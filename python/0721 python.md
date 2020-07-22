@@ -80,3 +80,25 @@ for number in numbers:
 print(min_number)
 ```
 
+
+
+### 4. 최댓값과 등장 횟수 구하기
+
+```python
+numbers = [13, 15, 18, 24, 15, 24, 16, 20, 24, 13, 17, 24]
+#방법 1
+print(max(numbers), number.count(max(numbers)))
+
+#방법 2
+count = 0
+max_number = numbers[0]
+for number in numbers:
+    if max_number <= number:
+        max_number = number
+        count = 1
+    elif max_number == number:
+        count+=1
+print(max_number)
+print(count)
+```
+
