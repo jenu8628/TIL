@@ -22,6 +22,7 @@ $ git config --global user.name {유저네임}
 
 ````sh
 $ git init
+:q
 ````
 
 
@@ -37,7 +38,16 @@ $ git init
 ```sh
 $ git add {stageing 할 파일}
 $ git add . 은 디렉토리에 있는 모든파일 올리기
+$ 
 ```
+
+#### + unstage
+
+```sh
+$git restore --staged b.txt.# b.txt는 추가한것을 빼고싶은 파일!
+```
+
+
 
 ### 3. commit
 
@@ -51,6 +61,20 @@ $ git commit -m '커밋 메세지'
 
 ```sh
 $ git log
+
+# 한줄로 보기
+$ git log --oneline
+```
+
+커밋 메세지를 수정하려면(제일 마지막 커밋만 수정가능)
+
+```sh
+$ git commit --amend
+
+# b.txt를 커밋했는데 c.txt도 같이 커밋하려면
+$ git add c.txt
+
+$ git commit --amend
 ```
 
 
@@ -118,7 +142,7 @@ $git pull origin master
 
 
 
-
+### jupyter notebook 다운 및 실행!
 
 ```sh
 $pip install notebook
@@ -126,6 +150,19 @@ $jupyter notebook
 ```
 
 .git이 있는 폴더에서 마우스 우클릭 -> vs코드 실행 -> .gitignore생성-> .{파일OR폴더명) 실행
+
+
+
+```sh
+$ ls -a
+
+#파일의 차이점을 설명
+$ git diff
+```
+
+
+
+
 
 
 
