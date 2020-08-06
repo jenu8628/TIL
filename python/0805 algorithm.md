@@ -173,7 +173,7 @@ print()
 ```python
 N = 10
 K = 0
-arr = list(map(intm input().split()))
+arr = list(map(int, input().split()))
 cnt = 0
 for i in range(1<<N):
     SUM = 0
@@ -249,10 +249,10 @@ def binarySearch(a, key):
         # ==
         if a[middle] == key:
             return True, middle
-        # >(작은경우)
+        # <(큰경우)
         elif a[middle] > key:
             end = middle - 1
-        # <(큰경우)
+        # >(작은경우)
         else:
             start = middle + 1
         # 못찾은 경우
