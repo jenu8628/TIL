@@ -129,6 +129,10 @@ ex)
 
 https://search.naver.com/search.naver?query=헤이즈
 
+네이버 주소창 메커니즘.
+
+
+
 #### form
 
 > 정보를 보낼 때 사용
@@ -141,4 +145,3 @@ https://search.naver.com/search.naver?query=헤이즈
 - GET
   - form에서 정보를 보내는 방법중 하나
   - 보낸 정보를 받으면 url에 내가보낸 정보가 적힌다.
-
