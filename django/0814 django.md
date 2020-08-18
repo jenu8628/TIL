@@ -33,11 +33,21 @@ url -> view -> templates
 
 #### django설치
 
+- pip install django
+
++ `ctrl` + `shift` + `p`  눌러서 open settings json 들어가서 복붙
+
 #### django pjt 생성
+
+- django-admin startproject 이름
 
 #### 서버를 켜서 로켓 페이지 확인
 
+- python manage.py runserver
+
 #### django app생성
+
+- python manage.py startapp 이름
 
 #### app을 pjt에 등록
 
