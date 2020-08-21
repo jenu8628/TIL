@@ -89,7 +89,7 @@ objects : python model과 DB가 상호작용할 수 있도록 해주는 매니�
 1. ipython : python shell기능을 좀더 강화 (터미널에 ipython을 치면 됨)
 2. django-extensions : django기능을 좀더 강화
 
-- django_extensions를 앱에 추가해줘야 사용 가능
+- django_extensions를 installed_app앱에 추가해줘야 사용 가능
 - python manage.py shell_plus입력
 
 
