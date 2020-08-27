@@ -191,7 +191,7 @@ memo[1] = 1
 
 def fibo(N):
     if memo[N] == 1:
-        memo[N] = fibo(N-11) + fibo(N-2)
+        memo[N] = fibo(N-1) + fibo(N-2)
     return memo[N]
 ```
 
@@ -295,7 +295,7 @@ G = [[0] * (N+1) for _ in range(N+1)]
 visited = [0] * (N+1)
 # 간선들을 인접행렬에 저장
 for i in range(E):
-    s, e = temp[2*i], temp[2*(i+1)]
+    s, e = temp[2*i], temp[2*i+1]
     G[s][e] = 1
     G[e][s] = 1
 
