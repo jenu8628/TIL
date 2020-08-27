@@ -114,37 +114,35 @@ for tc in range(1,T+1):
 ### 달팽이채우기
 
 ```python
-    #쌤풀이
-    # 우 하 좌 상
-    dr = [0, 1, 0, -1]
-    dc = [1, 0, -1, 0]
+#쌤풀이
+# 우 하 좌 상
+dr = [0, 1, 0, -1]
+dc = [1, 0, -1, 0]
 
-    T = int(input())
+T = int(input())
+for t in range(1, T + 1):
+    N = int(input())
+    arr = [[0] * N for _ in range(N)]
 
-    for t in range(1, T + 1):
-        N = int(input())
+    d = 0  # 방향 0:우, 1:하, 2:좌, 3:상
+    r = 0
+    c = 0
+    num = 1
 
-        arr = [[0] * N for _ in range(N)]
+    while num <= N * N:
+        arr[r][c] = num  # 현재칸에 값을 저장
+        num += 1  # 다음숫자준비
 
-        d = 0  # 방향 0:우, 1:하, 2:좌, 3:상
-        r = 0
-        c = 0
-        num = 1
-
-        while num <= N * N:
-            arr[r][c] = num  # 현재칸에 값을 저장
-            num += 1  # 다음숫자준비
-
-            # 다음칸을 결정
-            nr = r + dr[d]
-            nc = c + dc[d]
-            if 0 <= nr < N and 0 <= nc < N and arr[nr][nd] == 0:
-                # 현재좌표를 갱신
-                r, c = nr, nc
-            else:
-                d = (d + 1) % 4
-                r += dr[d]
-                c += dc[d]
+        # 다음칸을 결정
+        nr = r + dr[d]
+        nc = c + dc[d]
+        if 0 <= nr < N and 0 <= nc < N and arr[nr][nd] == 0:
+            # 현재좌표를 갱신
+            r, c = nr, nc
+        else:
+            d = (d + 1) % 4
+            r += dr[d]
+            c += dc[d]
 ```
 
 ### 회문
