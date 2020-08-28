@@ -323,7 +323,6 @@ def DFS(v):
         if arr[v][i] == 1 and visited[i] ==0:
             DFS(i) #6
 
-
 # 입력
 V, E = map(int, input().split())
 # 인접행렬 생성 준비
