@@ -1,6 +1,6 @@
+# 하영이풀이
 T = int(input())
 for tc in range(1, T + 1):
-
     N, M = map(int, input().split())
     # 델다 입력 방식
     # d = [-1, 1, 0]
@@ -12,7 +12,6 @@ for tc in range(1, T + 1):
     #         else:
     #             dx = x + i
     #             dy = y + j
-
     # 초기설정
     board = [[0] * N for _ in range(N)]
     mid = N // 2
@@ -64,7 +63,7 @@ for tc in range(1, T + 1):
 
 import sys
 sys.stdin = open('sample_input(1).txt', 'r')
-
+# 내 풀이
 # 8방향
 dr = [-1, -1, -1, 0, 0, 1, 1, 1]
 dc = [1, 0, -1, -1, 1, -1, 0, 1]
@@ -125,3 +124,51 @@ for tc in range(1,T+1):
             elif arr[i][j] == 2:
                 cnt2 += 1
     print('#{} {} {}'.format(tc, cnt1, cnt2))
+
+
+# 쌤 풀이
+# 8방향 델타
+# 우, 우하, 하 좌하, 좌, 좌상, 상, 우상
+dr = [0, 1, 1, 1, 0, -1, -1, -1]
+dc = [1, 1, 0, -1, -1, -1, 0, 1]
+
+def init():
+    mid = N // 2
+    othello[mid][mid] = othello[mid + 1][mid + 1] = 2
+    othello[mid + 1][mid] = othello[mid][mid + 1] = 1
+
+def change(r,c, color):
+    #새로운 좌표에 돌은 놓았다.
+    othello[r][c] = color
+    for i in range(8):
+        nr = r
+        nc = c
+        while True:
+            nr += dr[i]
+            nc += dc[i]
+            if nr <= 0 or nr >N or nc <=0 or nc>N:
+                break
+            if othello[nr][nc] == 0:
+                break
+            if othello[nr][nc] == color:
+                while not(nr == r and nc == c):
+                    nr -= dr[i]
+                    nc -= dc[i]
+                    othello[nr][nc] = color
+                break
+
+T = int(input())
+for tc in range(1, T + 1):
+    N, M = map(int, input().split())
+    othello = [[0] * (N + 1) for _ in range(N + 1)]
+    init()
+    for i in range(M):
+        c, r, color = map(int, input().split())
+        change(r,c, color)
+
+    b_cnt = 0
+    w_cnt = 0
+    for i in range(N+1):
+        b_cnt += othello[i].count(1)
+        w_cnt += othello[i].count(2)
+    print('#{} {} {}'.format(tc, b_cnt, w_cnt))
