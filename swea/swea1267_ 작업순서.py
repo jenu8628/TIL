@@ -1,9 +1,9 @@
 def bfs(x):
     q = []
-    visited = [0] * (V+1)
     q.append(x)
+    visited = [0] * (V+1)
     total.append(x)
-    while len(q) > 0:
+    while len(q):
         curr = q.pop(0)
         for w in range(1, V+1):
             if arr[curr][w] == 1 and visited[w] == 0:

@@ -57,5 +57,4 @@ for t in range(int(input())):
     for i in range(m):
         x, y = map(int, input().split())
         a = [a[x] if j == a[y] else j for j in a]
-        print(a)
-    print(f'#{t+1}',len(set(a[1:])))
+    print(f'#{t+1}', len(set(a[1:])))
