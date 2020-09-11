@@ -58,3 +58,41 @@ for t in range(int(input())):
         x, y = map(int, input().split())
         a = [a[x] if j == a[y] else j for j in a]
     print(f'#{t+1}', len(set(a[1:])))
+
+# 쌤풀이
+def BFS(v):
+    queue = [v]
+    visited[v] = 1
+    while len(queue) > 0:
+        # 큐에서 한명 꺼내기
+        curr = queue.pop()
+        for j in adj[curr]:
+            if not visited[j]:
+                visited[j] = 1
+                queue.append(j)
+
+def DFS(v):
+    visited[v] = 1
+    for i in adj[v]:
+        if not visited[i]:
+            DFS(i)
+
+
+T = int(input())
+for tc in range(1, T+1):
+    V, E = map(int, input().split())
+    #인접리스트
+    adj = [[] for _ in range(V+1)]
+
+    for i in range(E):
+        a, b = map(int, input().split())
+        adj[a].append(b)
+        adj[b].append(a)
+
+    visited = [0] * (V+1)
+    ans = 0
+    for i in range(1, V+1):
+        if visited[i] == 0:
+            ans += 1
+            BFS(i)
+    print("#{} {}".format(tc, ans))

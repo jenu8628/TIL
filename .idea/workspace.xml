@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e69d5d26-612e-4a1a-8642-339bde22265e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/swea/swea1231_중위순회.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/swea1232_사칙연산(힙).py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/swea/swea1267_ 작업순서.py" beforeDir="false" afterPath="$PROJECT_DIR$/swea/swea1267_ 작업순서.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/swea/swea1486_장훈이의 높은 선반.py" beforeDir="false" afterPath="$PROJECT_DIR$/swea/swea1486_장훈이의 높은 선반.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/swea/swea1861_정사각형방.py" beforeDir="false" afterPath="$PROJECT_DIR$/swea/swea1861_정사각형방.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/swea/swea7465_창용마을무리의개수.py" beforeDir="false" afterPath="$PROJECT_DIR$/swea/swea7465_창용마을무리의개수.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1hLfaGVZdRbzPW7v8THs5bj2AIb" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e69d5d26-612e-4a1a-8642-339bde22265e" name="Default Changelist" comment="" />
+      <created>1599795355958</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1599795355958</updated>
+    </task>
+    <servers />
+  </component>
+</project>
