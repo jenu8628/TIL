@@ -1,43 +1,42 @@
 import sys
 sys.stdin = open('input.txt', 'r')
-# def order(x):
-#     global cnt
-#     if len(arr[x]) == 2:
-#         order(arr[x][0])
-#         order(arr[x][1])
-#     elif len(arr[x]) == 1:
-#         order(arr[x][0])
-#     cnt += 1
-#
-# T = int(input())
-# for tc in range(1, T+1):
-#     # V: 트리의 정점의 총 수, E: 간선의 총 수, N,M: 공통조상을 찾는 두개의 정점번호
-#     V, E, N, M = map(int, input().split())
-#     arr = [[] for _ in range(V+1)]
-#     lis = list(map(int, input().split()))
-#     for i in range(E):
-#         st, ed = lis[2*i], lis[2*i+1]
-#         arr[st].append(ed)
-#     i = len(arr)
-#     lis_N = []
-#     lis_M = []
-#     while N != 1 or M != 1:
-#         for i in range(len(arr)):
-#             if N in arr[i]:
-#                 N = i
-#                 lis_N.append(N)
-#             if M in arr[i]:
-#                 M = i
-#                 lis_M.append(M)
-#     lis_N = lis_N[::-1]
-#     lis_M = lis_M[::-1]
-#     same = 0
-#     cnt = 0
-#     for i in range(min(len(lis_N), len(lis_M))):
-#         if lis_N[i] == lis_M[i]:
-#             same = lis_N[i]
-#     order(same)
-#     print("#{} {} {}".format(tc, same, cnt))
+def order(x):
+    global cnt
+    if len(arr[x]) == 2:
+        order(arr[x][0])
+        order(arr[x][1])
+    elif len(arr[x]) == 1:
+        order(arr[x][0])
+    cnt += 1
+
+T = int(input())
+for tc in range(1, T+1):
+    # V: 트리의 정점의 총 수, E: 간선의 총 수, N,M: 공통조상을 찾는 두개의 정점번호
+    V, E, N, M = map(int, input().split())
+    arr = [[] for _ in range(V+1)]
+    lis = list(map(int, input().split()))
+    for i in range(E):
+        st, ed = lis[2*i], lis[2*i+1]
+        arr[st].append(ed)
+    lis_N = []
+    lis_M = []
+    while N != 1 or M != 1:
+        for i in range(len(arr)):
+            if N in arr[i]:
+                N = i
+                lis_N.append(N)
+            if M in arr[i]:
+                M = i
+                lis_M.append(M)
+    lis_N = lis_N[::-1]
+    lis_M = lis_M[::-1]
+    same = 0
+    for i in range(min(len(lis_N), len(lis_M))):
+        if lis_N[i] == lis_M[i]:
+            same = lis_N[i]
+    cnt = 0
+    order(same)
+    print("#{} {} {}".format(tc, same, cnt))
 
 # 쌤풀이
 # 부모찾기 함수
@@ -90,8 +89,7 @@ for tc in range(1,T+1):
         else:
             tree[p][1] = c
         tree[c][2] = p
-    print(tree)
-    parents=[]
+    parents = []
 
     search_p(A)
     common = search_p(B)
