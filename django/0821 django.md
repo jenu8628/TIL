@@ -43,7 +43,7 @@ $ python -m venv 가상환경이름(보통 venv)
 
 ```
 $ which python
-/c/Users/박수아/AppData/Local/Programs/Python/Python37/python
+/c/Users/wkfwktka/AppData/Local/Programs/Python/Python37/python
 ```
 
 - 가상환경을 `visualcode`에서 켜려면 `ctrl+shift+p` 후 Python:select Interpreter를 누름
