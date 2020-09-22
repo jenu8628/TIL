@@ -30,7 +30,6 @@ def sort_list(idx):
     idx -= 1
     sort_list(idx)
 
-
 for tc in range(1,11):
     # N : 정점수
     N = int(input())

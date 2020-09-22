@@ -1,5 +1,6 @@
 import sys
 sys.stdin = open('input.txt', 'r')
+# 크기 구하는 함수
 def order(x):
     global cnt
     if len(arr[x]) == 2:
@@ -20,6 +21,7 @@ for tc in range(1, T+1):
         arr[st].append(ed)
     lis_N = []
     lis_M = []
+    # N, M의 조상 구하기
     while N != 1 or M != 1:
         for i in range(len(arr)):
             if N in arr[i]:
@@ -34,6 +36,8 @@ for tc in range(1, T+1):
     for i in range(min(len(lis_N), len(lis_M))):
         if lis_N[i] == lis_M[i]:
             same = lis_N[i]
+        else:
+            break
     cnt = 0
     order(same)
     print("#{} {} {}".format(tc, same, cnt))

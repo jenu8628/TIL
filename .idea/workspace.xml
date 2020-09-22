@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e69d5d26-612e-4a1a-8642-339bde22265e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/swea/swea1232_사칙연산(힙).py" beforeDir="false" afterPath="$PROJECT_DIR$/swea/swea1232_사칙연산(힙).py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/swea/swea1248_공통조상.py" beforeDir="false" afterPath="$PROJECT_DIR$/swea/swea1248_공통조상.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
