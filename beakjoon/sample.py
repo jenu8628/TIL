@@ -1,2 +1,9 @@
-arr = [1,2,3,4,5,6,7,8,9,10]
-print(arr[0:7])
+arr = [list(map(int, input().split())) for _ in range(5)]
+num = [list(map(int, input().split())) for _ in range(5)]
+
+for i in range(5):
+    for j in range(5):
+        for k in range(5):
+            if arr[i][j] in num[k]:
+                arr[i][j] = 0
+                
