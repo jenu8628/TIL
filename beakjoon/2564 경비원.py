@@ -1,57 +1,32 @@
-dr = [-1, 1, 0, 0]
-dc = [0, 0, -1, 1]
-
-def left(r, c):
-    global cnt
-    visit[r][c] = 1
-    for i in range(4):
-        nr = r + dr[i]
-        nc = r + dc[i]
-        if 0 <= nr < Y and 0 <= nc < X:
-            if arr[nr][nc] != 0 and visit[nr][nc] == 0:
-                cnt += 1
-                left(nr, nc)
-                if arr[nr][nc] == 2:
-                    arr[nr][nc] = 1
-                    left_cnt.append(cnt)
-                    return
-def right(r,c):
-    global cnt
-    visit[r][c] = 2
-    for i in range(3, -1, -1):
-        nr = r + dr[i]
-        nc = r + dc[i]
-        if 0 <= nr < Y and 0 <= nc < X:
-            if arr[nr][nc] != 0:
-                if visit[nr][nc] == 0 or visit[nr][nc] == 1:
-                    cnt += 1
-                    if arr[nr][nc] == 2:
-                        arr[nr][nc] = 1
-                        right_cnt.append(cnt)
-
-X, Y = map(int, input().split())
-arr = [[1] + [0]*(X-2) + [1] for _ in range(Y-2)]
-arr = [[1] * X] + arr + [[1] * X]
-N = int(input())
-for i in range(N):
-    a, b = map(int, input().split())
+def dist(a, b):
+    # 북쪽
     if a == 1:
-        arr[0][b] = 2
-    if a == 2:
-        arr[Y-1][b] = 2
-    if a == 3:
-        arr[b][0] = 2
+        return b
+    # 남쪽
+    elif a == 2:
+        return X + Y + X - b
+    # 서쪽
+    elif a == 3:
+        return X + Y + X + Y - b
+    # 동쪽
     else:
-        arr[b][X-1] = 2
-c, d = map(int, input().split())
-left_cnt = []
-right_cnt = []
+        return X + b
+X, Y = map(int, input().split())
+N = int(input())
+# 둘레의 전체 길이
+circum = 2 * (X + Y)
+arr = []
+# 상점과 동근이의 각자 위치를 0,0 기준점으로 부터 길이로 표시함
+for i in range(N+1):
+    a, b = map(int, input().split())
+    arr.append(dist(a, b))
+# my_dist 는 동근이
+my_dist = arr[-1]
+ans = 0
 for i in range(N):
-    visit = [[0]*X for _ in range(Y)]
-    left(c, d)
-    right(c, d)
-# for i in range(5):
-#     for j in range(10):
-#         cnt = 0
-#         if arr[i][j] == 1:
-#
+    # 동근이와 상점의 길이차의 절댓값
+    size = abs(my_dist - arr[i])
+    # size: (동근이와 삼전의 길이차)
+    # 전체길이에서 그 size를 뺀 값중 더 작은 값을 계속 더함
+    ans += min(size, circum-size)
+print(ans)

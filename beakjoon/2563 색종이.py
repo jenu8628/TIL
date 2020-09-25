@@ -1,3 +1,7 @@
+def check(r,c):
+    arr[r][c] = 1
+
+
 N = int(input())
 # 요소가 0 인 100 X 100 행렬 만들기
 arr = [[0] * 100 for _ in range(100)]
