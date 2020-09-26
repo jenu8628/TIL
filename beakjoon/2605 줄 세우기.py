@@ -12,4 +12,3 @@ for i in range(N):
 # print(*arr)
 for i in arr:
     print(i, end=" ")
-
