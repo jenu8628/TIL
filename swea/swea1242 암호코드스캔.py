@@ -1,87 +1,131 @@
-# import sys
-# sys.stdin = open('sample_input.txt', 'r')
-
+import sys
+sys.stdin = open('sample_input.txt', 'r')
 num = ['A', 'B', 'C', 'D', 'E', 'F']
 secret = [
-        [3, 2, 1, 1], [2, 2, 2, 1], [2, 1, 2, 2], [1, 4, 1, 1], [1, 1, 3, 2],
-        [1, 2, 3, 1], [1, 1, 1, 4], [1, 3, 1, 2], [1, 2, 1, 3], [3, 1, 1, 2]
-    ]
-def binary(x):
-    tmp = []
-    while x > 0:
-        tmp.append(x % 2)
-        x = x//2
-    while len(tmp) < 4:
-        tmp.append(0)
-    return tmp[::-1]
+    [3, 2, 1, 1], [2, 2, 2, 1], [2, 1, 2, 2], [1, 4, 1, 1], [1, 1, 3, 2],
+    [1, 2, 3, 1], [1, 1, 1, 4], [1, 3, 1, 2], [1, 2, 1, 3], [3, 1, 1, 2]
+]
 
-def check(arr):
-    tmp = []
-    number = arr[0]
-    cnt = 0
-    for i in range(0, len(arr), (len(arr)//56)*7):
-        for j in range((len(arr)//56)*7):
-            if arr[i+j] == number:
-                cnt += 1
-            else:
-                tmp.append(cnt//(len(arr)//56))
-                number = arr[i+j]
-                cnt = 1
-            if i + j == len(arr) - 1:
-                tmp.append(cnt//(len(arr)//56))
-    print(tmp)
-    last = []
-    for i in range(0, len(tmp), 4):
-        x = secret.index(tmp[i:i+4])
-        last.append(x)
+# 쌤풀이
+pattern = {(2, 1, 1): 0,
+           (2, 2, 1): 1,
+           (1, 2, 2): 2,
+           (4, 1, 1): 3,
+           (1, 3, 2): 4,
+           (2, 3, 1): 5,
+           (1, 1, 4): 6,
+           (3, 1, 2): 7,
+           (2, 1, 3): 8,
+           (1, 1, 2): 9}
 
-    sum_number = 0
-    for i in range(len(last)):
-        if i % 2 == 0:
-            sum_number += last[i] * 3
-        else:
-            sum_number += last[i]
-    if sum_number % 10 == 0:
-        return sum(last)
-    else:
-        return 0
+hexTobin = {'0': [0, 0, 0, 0], '1': [0, 0, 0, 1], '2': [0, 0, 1, 0], '3': [0, 0, 1, 1], '4': [0, 1, 0, 0],
+            '5': [0, 1, 0, 1], '6': [0, 1, 1, 0], '7': [0, 1, 1, 1], '8': [1, 0, 0, 0],
+            '9': [1, 0, 0, 1], 'A': [1, 0, 1, 0], 'B': [1, 0, 1, 1], 'C': [1, 1, 0, 0], 'D': [1, 1, 0, 1],
+            'E': [1, 1, 1, 0], 'F': [1, 1, 1, 1]}
+
+
+def find():
+    ans = 0
+    for i in range(N):
+        idx = len(arr[i]) - 1
+        while idx >= 55:
+            # 바로 위행의 값이 없어야 처음만나거
+            if arr[i][idx] and arr[i - 1][idx] == 0:
+                pwd = []
+                for _ in range(8):
+                    c2 = c3 = c4 = 0
+                    while arr[i][idx] == 0: idx -= 1
+                    while arr[i][idx] == 1: c4, idx = c4 + 1, idx - 1
+                    while arr[i][idx] == 0: c3, idx = c3 + 1, idx - 1
+                    while arr[i][idx] == 1: c2, idx = c2 + 1, idx - 1
+
+                    MIN = min(c2, c3, c4)
+                    pwd.append(pattern[(c2 // MIN, c3 // MIN, c4 // MIN)])
+
+                b = pwd[0] + pwd[2] + pwd[4] + pwd[6]
+                a = pwd[1] + pwd[3] + pwd[5] + pwd[7]
+
+                if (a * 3 + b) % 10 == 0:
+                    ans += a + b
+            idx -= 1
+    return ans
+
+
+for tc in range(1, int(input()) + 1):
+    N, M = map(int, input().split())
+    arr = [[] for _ in range(N)]
+
+    for i in range(N):
+        tmp = input()
+        for j in range(M):
+            arr[i] += hexTobin[tmp[j]]
+
+    print("#{} {}".format(tc, find()))
+
+# 다른풀이
+P = {(2, 1, 1): 0,
+     (2, 2, 1): 1,
+     (1, 2, 2): 2,
+     (4, 1, 1): 3,
+     (1, 3, 2): 4,
+     (2, 3, 1): 5,
+     (1, 1, 4): 6,
+     (3, 1, 2): 7,
+     (2, 1, 3): 8,
+     (1, 1, 2): 9}
+A = ord('A')
+nine, zero = ord('9'), ord('0')
 
 T = int(input())
-for tc in range(1, T+1):
+for tc in range(1, T + 1):
     N, M = map(int, input().split())
     arr = [input() for _ in range(N)]
-    didi = []
-    answer = 0
-    ans = []
-    for i in range(len(arr)):
-        for j in range(len(arr[i])):
-            if arr[i][j] != '0':
-                if arr[i][j] in num:
-                    didi.extend(binary(num.index(arr[i][j]) + 10))
-                else:
-                    didi.extend(binary(int(arr[i][j])))
 
-        if ans != didi and didi != []:
-            ans = didi[:]
-            tmp = []
-            if len(ans) % 56 > 10:
-                continue
-            else:
-                if len(ans) % 56 == 0 and len(ans) != 0:
-                    x = len(ans)
-                else:
-                    x = len(ans) - len(ans) % 56
-                for k in range(len(ans)-1, -1, -1):
-                    if ans[k] == 1:
-                        if k - (x - 1) < 0:
-                            for n in range((x-1)-k):
-                                tmp.append(0)
-                            tmp.extend(ans[0:k + 1])
-                        else:
-                            tmp.extend(ans[k-(x-1):k + 1])
-                        break
-                print(tmp)
-                answer += check(tmp)
-                print(answer)
-            didi = []
-    print('#{} {}'.format(tc, answer))
+    def getVal(ch):
+        t = ord(ch)
+        val = (t - A) + 10 if t > nine else t - zero
+        return val
+
+    def find():
+        ret = 0
+        for i in range(N):
+            j = M - 1
+            while j >= 0:
+                if arr[i][j] != '0' and arr[i - 1][j] == '0':
+                    pwd = []
+                    L = MIN = 0
+                    val, c = getVal(arr[i][j]), 0
+                    for k in range(8):
+                        c2 = c3 = c4 = 0
+                        while (val & 1) == 0:
+                            val, c = val >> 1, c + 1
+                            if c == 4:
+                                j, c = j - 1, 0
+                                val = getVal(arr[i][j])
+                        while val & 1:
+                            val, c, c4 = val >> 1, c + 1, c4 + 1
+                            if c == 4:
+                                j, c = j - 1, 0
+                                val = getVal(arr[i][j])
+                        while (val & 1) == 0:
+                            val, c, c3 = val >> 1, c + 1, c3 + 1
+                            if c == 4:
+                                j, c = j - 1, 0
+                                val = getVal(arr[i][j])
+                        while val & 1:
+                            val, c, c2 = val >> 1, c + 1, c2 + 1
+                            if c == 4:
+                                j, c = j - 1, 0
+                                val = getVal(arr[i][j])
+                        if k == 0:
+                            MIN = min(c2, c3, c4)
+
+                        pwd.append(P[(c2 // MIN, c3 // MIN, c4 // MIN)])
+
+                    a = pwd[0] + pwd[2] + pwd[4] + pwd[6]
+                    b = pwd[1] + pwd[3] + pwd[5] + pwd[7]
+                    if ((b * 3 + a) % 10) == 0:
+                        ret += (a + b)
+                j -= 1
+        return ret
+    print('#{} {}'.format(tc, find()))

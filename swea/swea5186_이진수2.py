@@ -15,3 +15,20 @@ for tc in range(1, T+1):
             break
     if len(ans) <= 12:
         print('#{} {}'.format(tc, ans))
+
+# 쌤풀이
+for tc in range(1, int(input()) + 1):
+    N = float(input())
+    ans = ''
+
+    while True:
+        N *= 2
+        ans += str(N)[0]
+        if N >= 1: N -= 1
+        if N == 0:
+            break
+
+        if len(ans) >= 13:
+            ans = 'overflow'
+            break
+    print("#{} {}".format(tc, ans))
