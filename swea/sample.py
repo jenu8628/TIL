@@ -20,6 +20,3 @@
 #                 print(ans[j], end='')
 #             print(end=' ')
 #         print()
-arr = [9,2,4,5,0,0,1,2,4,5]
-arr.sort()
-print(arr)
