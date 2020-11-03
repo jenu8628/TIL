@@ -1,34 +1,25 @@
-for tc in range(1, int(input()) + 1):
-    N, M = map(str, input().split())
-    arr = list(map(int, N))
+def backtrack(k):
+    global ans
+    num = int(''.join(map(str, arr)))
+    if num in visit[k]:
+        return
+    visit[k].add(num)
+    if k == int(M):
+        if ans < num:
+            ans = num
+    else:
+        for i in range(N-1):
+            for j in range(i+1, N):
+                arr[i], arr[j] = arr[j], arr[i]
+                backtrack(k + 1)
+                arr[i], arr[j] = arr[j], arr[i]
 
-    for i in range(int(M)):
-        # 최대
-        a, c, b = arr[i], i, 0
-        while c < N:
-            if a < arr[c]:
-                a = arr[c]
-                b = c
-            c += 1
-        #최소
-        # x, r, y = arr[0], 1, 0
-        # while r <= N-b:
-        #     if x > arr[r]:
-        #         x = arr[r]
-        #         y = r
-        #     r += 1
-        # 만약 arr[i]가 b보다 크면?
-        if arr[b]:
-            pass
-        arr[b], arr[i] = arr[i], arr[b]
-        
-    # for i in range(len(arr)):
-    #     for j in range(len(arr)-1, i,-1):
-    #         if arr[j] == max(arr):
-    #             arr[i], arr[j] = arr[j], arr[i]
-    #             break
-    print('#{}'.format(tc), end=' ')
-    for i in range(len(arr)):
-        print(arr[i], end='')
-    print()
+for tc in range(1, int(input()) + 1):
+    money, M = map(str, input().split())
+    ans = 0
+    visit = [set() for _ in range(int(M)+1)]
+    arr = list(map(int, money))
+    N = len(arr)
+    backtrack(0)
+    print('#{} {}'.format(tc, ans))
 
