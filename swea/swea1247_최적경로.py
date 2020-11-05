@@ -1,29 +1,23 @@
 def perm(idx):
-    if idx == len(tmp):
-        lis = [0] + [1] + tmp[:]
-        ans.append(lis)
+    global ans
+    if idx == N+1:
+        total = 0
+        for i in range(N+1):
+            total += abs(pos[i][0] - pos[i+1][0]) + abs(pos[i][1] - pos[i+1][1])
+        ans = min(ans, total)
         return
-    for i in range(idx, len(tmp)):
-        tmp[i], tmp[idx] = tmp[idx], tmp[i]
+    for i in range(idx, N+1):
+        pos[i], pos[idx] = pos[idx], pos[i]
         perm(idx+1)
-        tmp[i], tmp[idx] = tmp[idx], tmp[i]
+        pos[i], pos[idx] = pos[idx], pos[i]
 
-
-for tc in range(int(input())):
+for tc in range(1, int(input()) + 1):
     N = int(input())
-    arr = list(map(int, input().split()))
-    arr1 = []
-    for i in range(0, len(arr), 2):
-        arr1.append([arr[i], arr[i+1]])
-    tmp = []
-    ans = []
-    for i in range(2, 2+N):
-        tmp.append(i)
-    perm(0)
-
-    for i in range(len(ans)):
-        num = 0
-        for j in range(len(ans[i]))
-        x = abs(arr1[ans[i]][0] -arr1[ans[i]][1])
-
-    print(ans)
+    tmp = list(map(int, input().split()))
+    pos = [(tmp[0],tmp[1])]
+    for i in range(4, len(tmp), 2):
+        pos.append((tmp[i], tmp[i+1]))
+    pos.append((tmp[2], tmp[3]))
+    ans = 987654321
+    perm(1)
+    print('#{} {}'.format(tc, ans))
