@@ -31,7 +31,7 @@ for i in range(len(file_data)):
         elif file_data[i]['genre_ids'][j] == 80:
             file_data[i]['genre_ids'][j] = '범죄'
         elif file_data[i]['genre_ids'][j] == 99:
-            file_data[i]['genre_ids'][j] = '다큐멘터리'
+            pass
         elif file_data[i]['genre_ids'][j] == 18:
             file_data[i]['genre_ids'][j] = '드라마'
         elif file_data[i]['genre_ids'][j] == 10751:
