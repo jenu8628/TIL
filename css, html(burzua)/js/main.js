@@ -11,10 +11,10 @@
 
 	const sceneInfo = [
 		{
-			// 0
-			type: 'sticky',
-			heightNum: 5, // 브라우저 높이의 5배로 scrollHeight 세팅
-			scrollHeight: 0,
+      // 0
+			type: 'sticky', // 네브바 상단고정시킬 때 사용
+      heightNum: 5, // 브라우저 높이의 5배로 scrollHeight 세팅
+			scrollHeight: 0, // 스크롤바 높이를 뺀 내용 전체의 높이
 			objs: {
 				container: document.querySelector('#scroll-section-0'),
 				messageA: document.querySelector('#scroll-section-0 .main-message.a'),
