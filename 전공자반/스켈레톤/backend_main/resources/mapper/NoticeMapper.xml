@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.model.mapper.NoticeMapper">
+
+    <!--전체 게시글 조회-->
+    <select id="selectTotalCount" resultType="int">
+        SELECT COUNT(*)
+        FROM notice
+        WHERE notice_title LIKE CONCAT('%', #{name}, '%')
+    </select>
+
+    <!--한페이지에 보여질 게시글-->
+    <select id="selectPage" resultType="NoticeDto">
+        SELECT notice_num, notice_writer, notice_title, notice_cnt, DATE(write_date) AS write_date
+        FROM notice
+        WHERE notice_title LIKE CONCAT('%', #{name}, '%')
+        ORDER BY notice_num DESC LIMIT #{startRow}, #{cnt}
+    </select>
+
+    <!--공지사항 등록-->
+    <select id="insertNotice" parameterType="NoticeDto">
+        INSERT INTO notice (notice_writer, notice_title, notice_content, write_date)
+        VALUES (#{notice_writer}, #{notice_title}, #{notice_content}, now())
+    </select>
+
+    <!--공지사항 삭제-->
+    <delete id="deleteNotice" parameterType="int">
+        DELETE FROM notice
+        WHERE notice_num = #{num}
+    </delete>
+
+    <!--공지사항 수정-->
+    <update id="updateNotice" parameterType="NoticeDto">
+        UPDATE notice
+        SET notice_title = #{notice_title}, notice_content = #{notice_content}
+        WHERE notice_num = #{notice_num}
+    </update>
+
+    <!--공지사항 한개 조회-->
+    <select id="selectNotice" resultType="NoticeDto">
+        SELECT notice_num, notice_writer, notice_title, notice_content, notice_cnt, write_date
+        FROM notice
+        WHERE notice_num = #{num};
+    </select>
+
+    <!--공지사항 조회수 증가-->
+    <update id="updateCnt" parameterType="int">
+        UPDATE notice
+        SET notice_cnt = notice_cnt+1
+        WHERE notice_num = #{num};
+    </update>
+
+<!--    <select id="selectSearchAllPage" resultType="int">-->
+<!--        SELECT COUNT(*) FROM notice WHERE notice_title LIKE CONCAT('%', #{name}, '%')-->
+<!--    </select>-->
+
+<!--    <select id="selectSearchList" resultType="NoticeDto">-->
+<!--        SELECT notice_num, notice_writer, notice_title, notice_cnt, DATE(write_date) AS write_date-->
+<!--        FROM notice-->
+<!--        WHERE notice_title LIKE CONCAT('%', #{name}, '%')-->
+<!--        ORDER BY notice_num DESC LIMIT #{startRow}, #{cnt}-->
+<!--    </select>-->
+</mapper>

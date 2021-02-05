@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.model.mapper.BoardMapper">
+
+    <!--전체 게시글 조회-->
+    <select id="selectTotalCount" resultType="int">
+        SELECT COUNT(*)
+        FROM board
+        WHERE board_title LIKE CONCAT('%', #{name}, '%')
+    </select>
+
+    <!--한페이지에 보여질 게시글-->
+    <select id="selectPage" resultType="BoardDto">
+        SELECT board_num, board_writer, board_title, board_cnt, DATE(write_date) AS write_date,
+               (SELECT COUNT(*) FROM comment c WHERE c.board_num = b.board_num) AS comment_cnt
+        FROM board b
+        WHERE board_title LIKE CONCAT('%', #{name}, '%')
+        ORDER BY board_num DESC LIMIT #{startRow}, #{cnt}
+    </select>
+
+    <!--게시글 등록-->
+    <select id="insertBoard" parameterType="BoardDto">
+        INSERT INTO board (board_writer, board_title, board_content, write_date)
+        VALUES (#{board_writer}, #{board_title}, #{board_content}, now())
+    </select>
+
+    <!--게시글 삭제-->
+    <delete id="deleteBoard" parameterType="int">
+        DELETE FROM board
+        WHERE board_num = #{num}
+    </delete>
+
+    <!--게시글 수정-->
+    <update id="updateBoard" parameterType="BoardDto">
+        UPDATE board
+        SET board_title = #{board_title}, board_content = #{board_content}
+        WHERE board_num = #{board_num}
+    </update>
+
+    <!--게시글 한개 조회-->
+    <select id="selectBoard" resultType="BoardDto">
+        SELECT board_num, board_writer, board_title, board_content, board_cnt, write_date
+        FROM board
+        WHERE board_num = #{num};
+    </select>
+
+    <!--게시글 조회수 증가-->
+    <update id="updateCnt" parameterType="int">
+        UPDATE board
+        SET board_cnt = board_cnt+1
+        WHERE board_num = #{num};
+    </update>
+
+</mapper>
