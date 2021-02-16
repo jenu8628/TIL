@@ -8,8 +8,8 @@ import os
 #     os.rename(filename, filename.replace('SAMSUNG','SSAFY')) #원래 파일 네임에서 SAMSUNG을 SSAFY로 바꾸겠다.
 
     
-os.chdir(r'C:\Users\multicampus\Desktop\image\frame\two')
+os.chdir(r'C:\Users\multicampus\Desktop\image\frame\four')
 
 filenames = os.listdir('.')
-for i in range(0,len(filenames)):
+for i in range(0, len(filenames)):
     os.rename(filenames[i], str(i)+'.jpg')
