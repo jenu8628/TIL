@@ -23,7 +23,6 @@ for _ in range(K):
         [M, N] = heapq.heappop(arr)
         # 무게를 제외한 값만 heappush하여 넣어준다(최대힙 구성)
         heapq.heappush(tem, -N)
-        print(tem)
     # arr 최소보다는 작지만 넣을 수 있는 보석들은 있는 경우
     if tem:
         ans -= heapq.heappop(tem)
