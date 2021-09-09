@@ -1,5 +1,3 @@
-import sys
-
 def solution(board, moves):
     answer = 0
     board_T = list(map(list, zip(*board)))
