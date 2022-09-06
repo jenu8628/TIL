@@ -15,7 +15,7 @@ import sys
 # s//2정도 까지만 해도 됨!
 
 
-def solution(s):
+def solution1(s):
     answer = 2000
     result = ""
     # 만약 s =1 이라면 당연히 answer는 1
@@ -42,7 +42,38 @@ def solution(s):
         result = ""
     return answer
 
+def solution2(s):
+    answer = len(s)
+    for i in range(1, len(s) // 2 + 1):
+        temp = s[:i]
+        count = 1
+        min_str = ""
+        for j in range(i, len(s)+1, i):
+            if s[j:j+i] == temp:
+                count += 1
+            else:
+                if count == 1:
+                    count = ""
+                min_str += str(count) + temp
+                temp = s[j:j+i]
+                count = 1
+        if count == 1:
+            count = ""
+        min_str += str(count) + temp
+        answer = min(answer, len(min_str))
 
-# s = str(sys.stdin.readline())
-s = input()
-print(solution(s))
+    return answer
+
+
+if __name__ == '__main__':
+    # print(solution1("aabbaccc"))
+    # print(solution1("ababcdcdababcdcd"))
+    # print(solution1("abcabcdede"))
+    # print(solution1("abcabcabcabcdededededede"))
+    # print(solution1("xababcdcdababcdcd"))
+
+    print(solution2("aabbaccc"))
+    print(solution2("ababcdcdababcdcd"))
+    print(solution2("abcabcdede"))
+    print(solution2("abcabcabcabcdededededede"))
+    print(solution2("xababcdcdababcdcd"))

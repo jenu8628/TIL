@@ -43,7 +43,32 @@ def solution(n, arr1, arr2):
     return answer
 
 
-n = int(input())
-arr1 = list(map(int, input().split()))
-arr2 = list(map(int, input().split()))
-print(solution(n, arr1, arr2))
+def solution2(n, arr1, arr2):
+    maze1 = []
+    maze2 = []
+    answer = []
+    for i in range(n):
+        bin_1 = str(format(arr1[i], 'b'))
+        bin_2 = str(format(arr2[i], 'b'))
+        if len(bin_1) != n:
+            bin_1 = ((n-len(bin_1)) * '0') + bin_1
+        if len(bin_2) != n:
+            bin_2 = ((n - len(bin_2)) * '0') + bin_2
+        maze1.append(bin_1)
+        maze2.append(bin_2)
+    for i in range(n):
+        temp = ''
+        for j in range(n):
+            if maze1[i][j] == '1' or maze2[i][j] == '1':
+                temp += '#'
+            else:
+                temp += ' '
+        answer.append(temp)
+    return answer
+
+
+if __name__ == '__main__':
+    # print(solution(5, [9, 20, 28, 18, 11], [30, 1, 21, 17, 28]))
+    # print(solution(6, [46, 33, 33, 22, 31, 50], [27, 56, 19, 14, 14, 10]))
+    print(solution2(5, [9, 20, 28, 18, 11], [30, 1, 21, 17, 28]))
+    print(solution2(6, [46, 33, 33, 22, 31, 50], [27, 56, 19, 14, 14, 10]))

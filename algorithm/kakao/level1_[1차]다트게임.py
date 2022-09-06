@@ -1,7 +1,7 @@
 area = ["S", 'D', 'T']
 
 
-def solution(dartResult):
+def solution1(dartResult):
     # 점수 집계할 리스트
     sco = []
     temp = 0
@@ -25,5 +25,41 @@ def solution(dartResult):
                 temp += int(dartResult[i])
     return sum(sco)
 
-dartResult = input()
-print(solution(dartResult))
+
+bonus = ['S', 'D', 'T']
+def solution2(dartResult):
+    answer = []
+    score = ''
+    for result in dartResult:
+        if result.isdigit():
+            score += result
+        elif result in bonus:
+            score = int(score) ** (bonus.index(result) + 1)
+            answer.append(score)
+            score = ''
+
+        elif result == '*':
+            answer[-1] = answer[-1] * 2
+            if len(answer) > 1:
+                answer[-2] = answer[-2] * 2
+        else:
+            answer[-1] = -answer[-1]
+    return sum(answer)
+
+if __name__ == '__main__':
+
+    # print(solution1('1S2D*3T'))
+    # print(solution1('1D2S#10S'))
+    # print(solution1('1D2S0T'))
+    # print(solution1('1S*2T*3S'))
+    # print(solution1('1D#2S*3S'))
+    # print(solution1('1T2D3D#'))
+    # print(solution1('1D2S3T*'))
+
+    print(solution2('1S2D*3T'))
+    print(solution2('1D2S#10S'))
+    print(solution2('1D2S0T'))
+    print(solution2('1S*2T*3S'))
+    print(solution2('1D#2S*3S'))
+    print(solution2('1T2D3D#'))
+    print(solution2('1D2S3T*'))

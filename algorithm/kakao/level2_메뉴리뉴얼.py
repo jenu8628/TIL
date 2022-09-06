@@ -1,3 +1,7 @@
+from itertools import combinations
+from collections import Counter, defaultdict
+
+
 def com(idx, sidx, N, R, arr, sel):
     global menu
     if sidx == R:
@@ -15,7 +19,7 @@ def com(idx, sidx, N, R, arr, sel):
         com(i+1, sidx+1, N, R, arr, sel)
 
 
-def solution(orders, course):
+def solution1(orders, course):
     answer = []
     global menu
     menu = {}
@@ -32,10 +36,35 @@ def solution(orders, course):
         menu = {}
     return sorted(answer)
 
-orders = ["ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"]
-course = [2, 3, 4]
-#
-print(solution(orders, course))
+def solution2(orders, course):
+    answer = []
+    comb_dict = defaultdict(list)
+    for order in orders:
+        order =sorted(order)
+        for num in course:
+            if len(order) < num:
+                break
+            comb = list(map(lambda x: "".join(x), combinations(order, num)))
+            comb_dict[num].extend(comb)
+    for num, count_list in comb_dict.items():
+        menu_count = Counter(count_list)
+        max_count = max(menu_count.values())
+        if max_count > 1:
+            for menu, count in menu_count.items():
+                if count ==max_count:
+                    answer.append(menu)
+    answer.sort()
+    return answer
+
+if __name__ == '__main__':
+    # print(solution1(["ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"], [2, 3, 4]))
+    # print(solution1(["XYZ", "XWY", "WXA"], [2, 3, 4]))
+    print(solution2(["ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"], [2, 3, 4]))
+    print(solution2(["XYZ", "XWY", "WXA"], [2, 3, 4]))
+
+
+
+
 
 
 # from itertools import combinations

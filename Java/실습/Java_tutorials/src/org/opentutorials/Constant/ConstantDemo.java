@@ -1,0 +1,10 @@
+package org.opentutorials.Constant;
+
+public class ConstantDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

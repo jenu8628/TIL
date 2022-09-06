@@ -1,3 +1,6 @@
+from collections import defaultdict
+
+
 def solution(N, stages):
     # 해당 스테이지를 이미 깨서 지나쳤거나 도달한 총인원
     all_p = [0] * N
@@ -19,15 +22,43 @@ def solution(N, stages):
         else:
             basket.append((i+1, arrive_p[i] / all_p[i]))
     basket.sort(key=lambda x: (-x[1], x[0]))
-    answer = list(map(list,zip(*basket)))[0]
+    answer = list(zip(*basket))[0]
     # answer = [i[0] for i in basket]
     # for i in basket:
     #     answer.append(i[0])
     return answer
 
-N = int(input())
-stages = list(map(int, input().split()))
-print(solution(N, stages))
+
+def solution2(N, stages):
+    arrive_list = [0] * N
+    pass_list = [0] * N
+    fail_rate_dict = {}
+
+    for stage in stages:
+        if stage > N:
+            stage = stage - 1
+        else:
+            arrive_list[stage - 1] += 1
+        for j in range(stage):
+            pass_list[j] += 1
+
+    for i in range(N):
+        if pass_list[i] == 0:
+            fail_rate_dict[i+1] = 0
+            continue
+        fail_rate_dict[i+1] = arrive_list[i] / pass_list[i]
+
+    fail_rate_dict = sorted(fail_rate_dict.items(), key=lambda x: (-x[1], x[0]))
+    return list(list(zip(*fail_rate_dict))[0])
+
+
+if __name__ == '__main__':
+    # print(solution(5, [2, 1, 2, 6, 2, 4, 3, 3]))
+    # print(solution(4, [4,4,4,4,4]))
+    print(solution2(5, [2, 1, 2, 6, 2, 4, 3, 3]))
+    # print(solution2(4, [4, 4, 4, 4, 4]))
+
+
 
 
 # 도달 But Not clear 인원/ 도달한 인원
